@@ -1,0 +1,43 @@
+{
+  "name": "pacific-state",
+  "version": "0.0.1",
+  "description": "npm Scripts Starter",
+  "author": "Tomoya Otsuka",
+  "scripts": {
+    "start": "npm-run-all -p 'build:* -- DEV' dev",
+    "dev": "npm-run-all -p 'watch:* -- DEV --watch' server",
+    "stg": "npm-run-all -p 'build:* -- STG'",
+    "prd": "npm-run-all -p 'build:* -- PRD'",
+    "build:pug": "sh bin/pug.sh",
+    "build:sass": "sh bin/sass.sh",
+    "build:webpack": "sh bin/webpack.sh",
+    "watch:pug": "chokidar 'src/**/*.pug' --command 'npm run build:pug'",
+    "watch:sass": "chokidar 'src/**/*.scss' --command 'npm run build:sass'",
+    "watch:webpack": "sh bin/webpack.sh",
+    "imagemin": "node bin/imagemin.js",
+    "server": "node bin/server.js"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.5",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "browser-sync": "^2.18.13",
+    "chokidar-cli": "^1.2.0",
+    "imagemin": "^5.3.1",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-pngquant": "^5.0.1",
+    "json-merge": "^1.2.0",
+    "json-minify": "^1.0.0",
+    "node-sass": "^4.5.3",
+    "npm-run-all": "^4.1.1",
+    "postcss-cli": "^2.6.0",
+    "pug": "^2.0.0-rc.4",
+    "pug-cli": "github:pugjs/pug-cli#master",
+    "webpack": "^3.3.0"
+  }
+}

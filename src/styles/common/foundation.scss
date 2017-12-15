@@ -1,0 +1,143 @@
+/*--------------------------------------------------------------------------------*/
+/* Foundation */
+/*--------------------------------------------------------------------------------*/
+
+/* Element
+/*------------------------------------------------------------*/
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  color: $main;
+  font-family: $sans;
+  font-size: 1.5rem;
+  letter-spacing: .050em;
+  line-height: 2.4rem;
+  text-size-adjust: none;
+  // font-feature-settings : "palt";
+  font-feature-settings : "pkna";
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+
+/* Headline
+/*------------------------------*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: normal;
+  font-family: $slab;
+}
+
+h1 {
+  margin: 0 0 $row1;
+  font-size: 6.0rem;
+  letter-spacing: .025em;
+  line-height: 8.0rem;
+}
+
+h2 {
+  margin: 0 0 $row1;
+  font-size: 4.2rem;
+  letter-spacing: .050em;
+  line-height: 6.4rem;
+}
+
+h3 {
+  margin: 0 0 $row1;
+  font-size: 3.0rem;
+  letter-spacing: .050em;
+  line-height: 3.2rem;
+}
+
+h4 {
+  margin: 0 0 $row1;
+  font-size: 2.1rem;
+  line-height: $row1;
+}
+
+
+/* Bodycopy
+/*------------------------------*/
+
+p {
+  margin: 0 0 $row1;
+
+  & + h3 {
+    margin-top: $row3;
+  }
+}
+
+ul {
+  margin: $row2 0 $row3;
+  padding: 0 0 0 $row3;
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+}
+
+li {
+  margin: 0 0 $row1/2;
+
+  ul {
+    margin: $row1/2 0 0;
+  }
+}
+
+a {
+  color: $main;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+small {
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+}
+
+pre {
+  margin: 0 !important;
+  font-size: 1.1rem !important;
+
+  code {
+    margin: $row1 0 $row3;
+    padding: $row2 - 1 !important;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    line-height: 2.4rem;
+  }
+}
+
+
+/* Pseudo
+/*------------------------------*/
+
+::selection {
+	background-color: $main;
+	color: $white;
+}
+
+
+
+/* Class
+/*------------------------------------------------------------*/
+
+.body {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: $row6 $col1 0;
+}
+
+[class^="page-"] {
+
+  > section {
+    margin: 0 0 $row4;
+  }
+}

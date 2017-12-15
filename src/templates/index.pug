@@ -1,0 +1,120 @@
+extends ./_app/application.pug
+
+block basetag
+  - PATH = '.'
+
+block meta
+  - TITLE       = ''
+  - KEYWORDS    = KEYWORDS
+  - DESCRIPTION = DESCRIPTION
+
+block var
+  - CLASS = 'index'
+
+block content
+  section(class=`page-${CLASS}` id=`${CLASS}`)
+    //- 
+    //- Summary
+    //- 
+    section.summary
+      h2 Summary
+      p
+        | npm Scriptsにより、静的サイト制作のための環境とビルドプロセスを構築。
+        | Node.js及びnpmがインストールされていれば1コマンドで開発環境を整えることができます。
+        | ページタイトルやメタなどの汎用的な情報はJSONで管理。開発者不在でも更新管理が可能となるようシンプルな構成としました。
+      h3 Feature
+      ul
+        li Pug ( HTML Template Engine )
+        li Sass
+        li Webpack
+        li BrowserSync
+      h3 Directory Structure
+      pre
+        code(class='code-multiline' root)
+          | ├ .postcssrc.json：Autoprefixerオプション設定
+          | ├ bin：
+          |   ├ pug.sh：Pugコンパイル処理
+          |   └ server.js：BrowserSyncの起動とオプション設定
+          | ├ data：
+          |   ├ data.json：Pugコンパイル時に読み込むJSONファイル
+          |   ├ env.json：Pugコンパイル用の環境変数保持
+          |   ├ site.json：titleやmetaなど共通データの記載
+          |   └ site.min.json：Merge専用
+          | ├ dist：生成ファイル出力／ローカルサーバールートディレクトリ
+          |   └ images：画像ファイルの格納
+          | ├ package.json
+          | ├ README.md
+          | ├ src：開発ファイルの格納
+          |   ├ scripts：.scss
+          |   ├ styles：.js
+          |   └ templates：.pug
+          | └ webpack.config.js：Webpackオプション設定
+    //- 
+    //- Env
+    //- 
+    section.env
+      h2 Environment
+      h3 OS / App ver.
+      p 以下の環境で構築
+      ul
+        li macOS Sierra@10.12.6
+        li Node.js@8.6.0
+        li npm@5.4.2
+      h3 Install nodebrew, Node.js
+      p nodebrewをインストールの上、下記コマンドでNode.jsをインストールする。
+      pre
+        code(class='code-multiline') $ nodebrew install-binary v8.6.0
+      h3 Install npm
+      pre
+        code(class='code-multiline') $ npm i
+    //- 
+    //- Usage
+    //- 
+    section.usage
+      h2 Usage
+      h3 Initialize
+      p HTML/CSS/JavaScriptコンパイルとファイル監視、ローカルサーバーの起動を開発時環境変数で行う。初回時などに使用。
+      pre
+        code(class='code-multiline') $ npm start
+      h3 Development
+      p HTML/CSS/JavaScriptファイルの監視とローカルサーバー起動を開発時環境変数で行う。
+      pre
+        code(class='code-multiline') $ npm run dev
+      h3 Staging / Production
+      p HTML/CSS/JavaScriptコンパイルをステージングあるいは本番時環境変数で行う。
+      pre
+        code(class='code-multiline')
+          | # ステージング
+          | $ npm run stg
+          | # 本番
+          | $ npm run prd
+      h3 Others
+      p 各タスクの実行コマンドは以下の通り。開発／本番環境の分岐はコマンド実行時の引数で行う。
+      pre
+        code(class='code-multiline')
+          | # pug -> HTML
+          | $ npm run build:pug -- (DEV／STG／PRD)
+          | 
+          | # sass -> CSS
+          | $ npm run build:sass
+          | 
+          | # EcmaScript6~ -> JavaScript
+          | $ npm run build:webpack -- (DEV／STG／PRD)
+          | 
+          | # 画像圧縮
+          | $ npm run imagemin
+          | 
+          | # ローカルサーバー起動
+          | $ npm run server
+    //- 
+    //- Update
+    //- 
+    section.update
+      h2 Update
+      ul
+        li Sep. 15, 2017
+          ul
+            li This repository is released.
+  //- 
+  //- Page Index End
+  //- 

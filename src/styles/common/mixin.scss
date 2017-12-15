@@ -1,0 +1,91 @@
+/*--------------------------------------------------------------------------------*/
+/* Mixin */
+/*--------------------------------------------------------------------------------*/
+
+/* Typography
+/*------------------------------------------------------------*/
+
+/* Title */
+@mixin title () {
+  font-size: 4.2rem;
+  line-height: 6.1rem;
+}
+/* Headline */
+@mixin headline () {
+  font-size: 3.0rem;
+  line-height: 4.3rem;
+}
+/* Subheads */
+@mixin subheads () {
+  font-size: 2.1rem;
+  line-height: 3.1rem;
+}
+/* Bodycopy */
+@mixin bodycopy () {
+  font-size: 1.5rem;
+  line-height: 2.2rem;
+}
+
+
+
+/* Media Query
+/*------------------------------------------------------------*/
+
+@mixin for-size ( $range ) {
+	$mobile-upper-boundary:            600px;
+	$tablet-portrait-upper-boundary:   900px;
+	$tablet-landscape-upper-boundary: 1200px;
+	$desktop-upper-boundary:          1800px;
+
+	@if $range == mobile-only {
+		@media (max-width: #{$mobile-upper-boundary - 1}) {
+      @content;
+    }
+	}
+  @else if $range == tablet-portrait-up {
+    @media (min-width: $mobile-upper-boundary) {
+      @content;
+    }
+  }
+  @else if $range == tablet-landscape-up {
+    @media (min-width: $tablet-portrait-upper-boundary) {
+      @content;
+    }
+  }
+  @else if $range == desktop-up {
+    @media (min-width: $tablet-landscape-upper-boundary) {
+      @content;
+    }
+  }
+  @else if $range == big-desktop-up {
+    @media (min-width: $desktop-upper-boundary) {
+      @content;
+    }
+  }
+}
+
+
+
+/* 
+/*------------------------------------------------------------*/
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+@mixin hidetxt {
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+@mixin bold {
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+     -moz-font-smoothing: antialiased;
+          font-smoothing: antialiased;
+}
