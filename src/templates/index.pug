@@ -18,10 +18,8 @@ block content
     //- 
     section.summary
       h2 Summary
-      p
-        | npm Scriptsにより、静的サイト制作のための環境とビルドプロセスを構築。
-        | Node.js及びnpmがインストールされていれば1コマンドで開発環境を整えることができます。
-        | ページタイトルやメタなどの汎用的な情報はJSONで管理。開発者不在でも更新管理が可能となるようシンプルな構成としました。
+      p.
+        npm Scriptsにより、静的サイト制作のための環境とビルドプロセスを構築。Node.js及びnpmがインストールされていれば1コマンドで開発環境を整えることができます。ページタイトルやメタなどの汎用的な情報はJSONで管理。開発者不在でも更新管理が可能となるようシンプルな構成としました。
       h3 Feature
       ul
         li Pug ( HTML Template Engine )
@@ -30,25 +28,25 @@ block content
         li BrowserSync
       h3 Directory Structure
       pre
-        code(class='code-multiline' root)
-          | ├ .postcssrc.json：Autoprefixerオプション設定
-          | ├ bin：
-          |   ├ pug.sh：Pugコンパイル処理
-          |   └ server.js：BrowserSyncの起動とオプション設定
-          | ├ data：
-          |   ├ data.json：Pugコンパイル時に読み込むJSONファイル
-          |   ├ env.json：Pugコンパイル用の環境変数保持
-          |   ├ site.json：titleやmetaなど共通データの記載
-          |   └ site.min.json：Merge専用
-          | ├ dist：生成ファイル出力／ローカルサーバールートディレクトリ
-          |   └ images：画像ファイルの格納
-          | ├ package.json
-          | ├ README.md
-          | ├ src：開発ファイルの格納
-          |   ├ scripts：.scss
-          |   ├ styles：.js
-          |   └ templates：.pug
-          | └ webpack.config.js：Webpackオプション設定
+        code(class='code-multiline' root).
+          ├ .postcssrc.json：Autoprefixerオプション設定
+          ├ bin：
+            ├ pug.sh：Pugコンパイル処理
+            └ server.js：BrowserSyncの起動とオプション設定
+          ├ data：
+            ├ data.json：Pugコンパイル時に読み込むJSONファイル
+            ├ env.json：Pugコンパイル用の環境変数保持
+            ├ site.json：titleやmetaなど共通データの記載
+            └ site.min.json：Merge専用
+          ├ dist：生成ファイル出力／ローカルサーバールートディレクトリ
+            └ images：画像ファイルの格納
+          ├ package.json
+          ├ README.md
+          ├ src：開発ファイルの格納
+            ├ scripts：.scss
+            ├ styles：.js
+            └ templates：.pug
+          └ webpack.config.js：Webpackオプション設定
     //- 
     //- Env
     //- 
@@ -83,29 +81,29 @@ block content
       h3 Staging / Production
       p HTML/CSS/JavaScriptコンパイルをステージングあるいは本番時環境変数で行う。
       pre
-        code(class='code-multiline')
-          | # ステージング
-          | $ npm run stg
-          | # 本番
-          | $ npm run prd
+        code(class='code-multiline').
+          # ステージング
+          $ npm run stg
+          # 本番
+          $ npm run prd
       h3 Others
       p 各タスクの実行コマンドは以下の通り。開発／本番環境の分岐はコマンド実行時の引数で行う。
       pre
-        code(class='code-multiline')
-          | # pug -> HTML
-          | $ npm run build:pug -- (DEV／STG／PRD)
-          | 
-          | # sass -> CSS
-          | $ npm run build:sass
-          | 
-          | # EcmaScript6~ -> JavaScript
-          | $ npm run build:webpack -- (DEV／STG／PRD)
-          | 
-          | # 画像圧縮
-          | $ npm run imagemin
-          | 
-          | # ローカルサーバー起動
-          | $ npm run server
+        code(class='code-multiline').
+          # pug -> HTML
+          $ npm run build:pug -- (DEV／STG／PRD)
+          
+          # sass -> CSS
+          $ npm run build:sass
+          
+          # EcmaScript6~ -> JavaScript
+          $ npm run build:webpack -- (DEV／STG／PRD)
+          
+          # 画像圧縮
+          $ npm run imagemin
+          
+          # ローカルサーバー起動
+          $ npm run server
     //- 
     //- Update
     //- 

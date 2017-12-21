@@ -2,10 +2,10 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    'dist': ['babel-polyfill', `${__dirname}/src/scripts/app.js`]
+    'dist': [ 'babel-polyfill', `${__dirname}/../src/scripts/app.js` ]
   },
   output: {
-    path: `${__dirname}`,
+    path: `${__dirname}/../`,
     filename: '[name]/bundle.js'
   },
   module: {
@@ -19,7 +19,12 @@ module.exports = {
               presets: [
                 [ 'env', {
                   'targets': {
-                    'browsers': [ 'last 2 versions', 'ie >= 9', 'iOS >= 10.0', 'Android >= 5.0' ]
+                    'browsers': [
+                      'last 2 versions',
+                      'ie >= 9',
+                      'iOS >= 10.0',
+                      'Android >= 5.0'
+                    ]
                   },
                   'modules': false
                 }]

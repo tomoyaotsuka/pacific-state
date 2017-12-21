@@ -8,14 +8,14 @@
     "dev": "npm-run-all -p 'watch:* -- DEV --watch' server",
     "stg": "npm-run-all -p 'build:* -- STG'",
     "prd": "npm-run-all -p 'build:* -- PRD'",
-    "build:pug": "sh bin/pug.sh",
-    "build:sass": "sh bin/sass.sh",
-    "build:webpack": "sh bin/webpack.sh",
+    "build:pug": "sh bash/pug.sh",
+    "build:sass": "sh bash/sass.sh",
+    "build:webpack": "sh bash/webpack.sh",
     "watch:pug": "chokidar 'src/**/*.pug' --command 'npm run build:pug'",
     "watch:sass": "chokidar 'src/**/*.scss' --command 'npm run build:sass'",
-    "watch:webpack": "sh bin/webpack.sh",
-    "imagemin": "node bin/imagemin.js",
-    "server": "node bin/server.js"
+    "watch:webpack": "sh bash/webpack.sh",
+    "imagemin": "sh bash/imagemin.sh",
+    "server": "browser-sync start --config 'conf/bs-config.js'"
   },
   "dependencies": {
     "jquery": "^3.2.1"
@@ -29,6 +29,7 @@
     "browser-sync": "^2.18.13",
     "chokidar-cli": "^1.2.0",
     "imagemin": "^5.3.1",
+    "imagemin-cli": "^3.0.0",
     "imagemin-jpegtran": "^5.0.2",
     "imagemin-pngquant": "^5.0.1",
     "json-merge": "^1.2.0",

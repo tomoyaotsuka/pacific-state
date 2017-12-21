@@ -40,11 +40,7 @@
       <section class="page-index" id="index">
         <section class="summary">
           <h2>Summary</h2>
-          <p>
-            npm Scriptsにより、静的サイト制作のための環境とビルドプロセスを構築。
-            Node.js及びnpmがインストールされていれば1コマンドで開発環境を整えることができます。
-            ページタイトルやメタなどの汎用的な情報はJSONで管理。開発者不在でも更新管理が可能となるようシンプルな構成としました。
-          </p>
+          <p>npm Scriptsにより、静的サイト制作のための環境とビルドプロセスを構築。Node.js及びnpmがインストールされていれば1コマンドで開発環境を整えることができます。ページタイトルやメタなどの汎用的な情報はJSONで管理。開発者不在でも更新管理が可能となるようシンプルな構成としました。</p>
           <h3>Feature</h3>
           <ul>
             <li>Pug ( HTML Template Engine )</li>
@@ -105,16 +101,16 @@ $ npm run prd</code></pre>
           <p>各タスクの実行コマンドは以下の通り。開発／本番環境の分岐はコマンド実行時の引数で行う。</p>
           <pre><code class="code-multiline"># pug -> HTML
 $ npm run build:pug -- (DEV／STG／PRD)
- 
+
 # sass -> CSS
 $ npm run build:sass
- 
+
 # EcmaScript6~ -> JavaScript
 $ npm run build:webpack -- (DEV／STG／PRD)
- 
+
 # 画像圧縮
 $ npm run imagemin
- 
+
 # ローカルサーバー起動
 $ npm run server</code></pre>
         </section>
