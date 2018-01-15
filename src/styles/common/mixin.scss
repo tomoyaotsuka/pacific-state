@@ -81,7 +81,7 @@
   font-size: 0;
 
   background-image: url($bg-path);
-  background-size: round-decimal($sheet-w / $sprite-w * 100 + 0%) round-decimal($sheet-h / $sprite-h * 100 + 0%);
+  background-size: floor($sheet-w / $sprite-w * 100 + 0%) floor($sheet-h / $sprite-h * 100 + 0%);
   background-position-x: ($offset-x / ($sheet-w - $sprite-w) * 100 + 0%);
   background-position-y: ($offset-y / ($sheet-h - $sprite-h) * 100 + 0%);
 

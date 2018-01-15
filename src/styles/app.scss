@@ -4,12 +4,16 @@
 
 /* Common
 /*------------------------------------------------------------*/
-@import "./common/mixin.scss";
-@import "./common/functions.scss";
-@import "./common/normalize.scss";
 @import "./common/variables.scss";
-@import "./common/foundation.scss";
-@import "./common/components.scss";
+@import "./common/functions.scss";
+@import "./common/mixin.scss";
+@import "./common/normalize.scss";
+
+/* Foundation
+/*------------------------------------------------------------*/
+@import "./foundation.scss";
+@import "./modules.scss";
+@import "./components.scss";
 
 /* Pages
 /*------------------------------------------------------------*/
