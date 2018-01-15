@@ -8,10 +8,10 @@ const util = require('util');
  */
 
 module.exports = {
-  src:       './src/images/_sprite/**/*.{png,gif,jpg}',
-  destImage: './src/images/sprite.png',
-  destCSS:   './src/styles/common/sprite.scss',
-  imgPath:   './images/sprite.png',
+  src:       './src/images/_sprites/**/*.{png,gif,jpg}',
+  destImage: './src/images/sprites.png',
+  destCSS:   './src/styles/sprites.scss',
+  imgPath:   './images/sprites.png',
   padding: 2,
   algorithm: 'binary-tree',
   algorithmOpts: { sort: false },
@@ -33,15 +33,21 @@ module.exports = {
 // const fs   = require('fs');
 // const path = require('path');
 //
+// const getFolders = dir_path => {
+//   return fs.readdirSync(dir_path).filter( file => {
+//     return fs.statSync(path.join(dir_path, file)).isDirectory();
+//   });
+// };
+//
 // module.exports = [];
 //
-// const folders = getFolders('./src/images/_sprite/');
+// const folders = getFolders('./src/images/_sprites/');
 // folders.forEach( folder => {
 //   const option = {
-//     src:       `./src/images/_sprite/${folder}/**/*.{png,gif,jpg}`,
-//     destImage: `./src/images/sprite/${folder}.png`,
-//     destCSS:   `./src/styles/common/sprite/${folder}.scss`,
-//     imgPath:   `./images/sprite/${folder}.png`,
+//     src:       `./src/images/_sprites/${folder}/**/*.{png,gif,jpg}`,
+//     destImage: `./src/images/sprites/${folder}.png`,
+//     destCSS:   `./src/styles/sprites/${folder}.scss`,
+//     imgPath:   `./images/sprites/${folder}.png`,
 //     padding:   2,
 //     algorithm: 'binary-tree',
 //     algorithmOpts: { sort: false },
@@ -54,9 +60,3 @@ module.exports = {
 //   };
 //   module.exports.push( option );
 // });
-//
-// const getFolders = dir_path => {
-//   return fs.readdirSync(dir_path).filter( file => {
-//     return fs.statSync(path.join(dir_path, file)).isDirectory();
-//   });
-// };
