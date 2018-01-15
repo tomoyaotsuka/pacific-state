@@ -114,5 +114,8 @@ $ npm run server
 
 
 ## 更新履歴
+* Jan. 15, 2018
+	* Update imagemin
+	* Add spritesmith
 * Sep. 15, 2017
 	* This package is Released.
