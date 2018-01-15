@@ -1,6 +1,6 @@
 {
   "name": "pacific-state",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "npm Scripts Starter",
   "author": "Tomoya Otsuka",
   "scripts": {
@@ -11,10 +11,11 @@
     "build:pug": "sh bash/pug.sh",
     "build:sass": "sh bash/sass.sh",
     "build:webpack": "sh bash/webpack.sh",
+    "build:sprite": "spritesmith --rc=./conf/.spritesmith.js",
     "watch:pug": "chokidar 'src/**/*.pug' --command 'npm run build:pug'",
     "watch:sass": "chokidar 'src/**/*.scss' --command 'npm run build:sass'",
     "watch:webpack": "sh bash/webpack.sh",
-    "imagemin": "sh bash/imagemin.sh",
+    "imagemin": "glob \"src/images/**/*.{png,jpg,gif,svg}\" | node bash/imagemin -v -o dist",
     "server": "browser-sync start --config 'conf/bs-config.js'"
   },
   "dependencies": {
@@ -28,10 +29,13 @@
     "babel-preset-env": "^1.6.0",
     "browser-sync": "^2.18.13",
     "chokidar-cli": "^1.2.0",
+    "cli-glob": "^0.1.0",
     "imagemin": "^5.3.1",
     "imagemin-cli": "^3.0.0",
+    "imagemin-gifsicle": "^5.2.0",
     "imagemin-jpegtran": "^5.0.2",
     "imagemin-pngquant": "^5.0.1",
+    "imagemin-svgo": "^6.0.0",
     "json-merge": "^1.2.0",
     "json-minify": "^1.0.0",
     "node-sass": "^4.5.3",
@@ -39,6 +43,7 @@
     "postcss-cli": "^2.6.0",
     "pug": "^2.0.0-rc.4",
     "pug-cli": "github:pugjs/pug-cli#master",
+    "spritesmith-cli": "^1.1.2",
     "webpack": "^3.3.0"
   }
 }

@@ -2,28 +2,25 @@
 /* Mixin */
 /*--------------------------------------------------------------------------------*/
 
-/* Typography
-/*------------------------------------------------------------*/
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
 
-/* Title */
-@mixin title () {
-  font-size: 4.2rem;
-  line-height: 6.1rem;
+@mixin hidetxt {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
 }
-/* Headline */
-@mixin headline () {
-  font-size: 3.0rem;
-  line-height: 4.3rem;
-}
-/* Subheads */
-@mixin subheads () {
-  font-size: 2.1rem;
-  line-height: 3.1rem;
-}
-/* Bodycopy */
-@mixin bodycopy () {
-  font-size: 1.5rem;
-  line-height: 2.2rem;
+
+@mixin bold {
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+     -moz-font-smoothing: antialiased;
+          font-smoothing: antialiased;
 }
 
 
@@ -32,18 +29,18 @@
 /*------------------------------------------------------------*/
 
 @mixin for-size ( $range ) {
-	$mobile-upper-boundary:            600px;
+	$mobile-upper-boundary:            768px;
 	$tablet-portrait-upper-boundary:   900px;
 	$tablet-landscape-upper-boundary: 1200px;
 	$desktop-upper-boundary:          1800px;
 
 	@if $range == mobile-only {
-		@media (max-width: #{$mobile-upper-boundary - 1}) {
+		@media (max-width: $mobile-upper-boundary) {
       @content;
     }
 	}
   @else if $range == tablet-portrait-up {
-    @media (min-width: $mobile-upper-boundary) {
+    @media (min-width: #{$mobile-upper-boundary + 1}) {
       @content;
     }
   }
@@ -66,26 +63,31 @@
 
 
 
-/* 
+/* Responsive Sprite Image
 /*------------------------------------------------------------*/
 
-@mixin clearfix {
-  &:after {
-    content: "";
-    display: block;
-    clear: both;
-  }
-}
+@mixin sprite-responsive($sprite){
+  $sheet-w  : nth($sprite, 7);
+  $sheet-h  : nth($sprite, 8);
+  $sprite-w : nth($sprite, 5);
+  $sprite-h : nth($sprite, 6);
+  $offset-x : nth($sprite, 1);
+  $offset-y : nth($sprite, 2);
+  $bg-path  : nth($sprite, 9);
 
-@mixin hidetxt {
-  overflow: hidden;
-  text-indent: 101%;
   white-space: nowrap;
-}
+  text-indent: 100%;
+  overflow: hidden;
+  font-size: 0;
 
-@mixin bold {
-  font-weight: bold;
-  -webkit-font-smoothing: antialiased;
-     -moz-font-smoothing: antialiased;
-          font-smoothing: antialiased;
+  background-image: url($bg-path);
+  background-size: round-decimal($sheet-w / $sprite-w * 100 + 0%) round-decimal($sheet-h / $sprite-h * 100 + 0%);
+  background-position-x: ($offset-x / ($sheet-w - $sprite-w) * 100 + 0%);
+  background-position-y: ($offset-y / ($sheet-h - $sprite-h) * 100 + 0%);
+
+  // &::after {
+  //   content: '';
+  //   display: block;
+  //   padding-top: ($sprite-h / $sprite-w * 100 + 0%);
+  // }
 }
