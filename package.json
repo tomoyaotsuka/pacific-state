@@ -1,13 +1,13 @@
 {
   "name": "pacific-state",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "npm Scripts Starter",
   "author": "Tomoya Otsuka",
   "scripts": {
     "start": "npm-run-all -p 'build:* -- DEV' dev",
     "dev": "npm-run-all -p 'watch:* -- DEV --watch' server",
-    "stg": "npm-run-all -p 'build:* -- STG'",
-    "prd": "npm-run-all -p 'build:* -- PRD'",
+    "stg": "npm-run-all -s 'build:* -- STG' minify:*",
+    "prd": "npm-run-all -s 'build:* -- PRD' minify:*",
     "build:pug": "sh bash/pug.sh",
     "build:sass": "sh bash/sass.sh",
     "build:webpack": "sh bash/webpack.sh",
@@ -15,7 +15,8 @@
     "watch:pug": "chokidar 'src/**/*.pug' --command 'npm run build:pug'",
     "watch:sass": "chokidar 'src/**/*.scss' --command 'npm run build:sass'",
     "watch:webpack": "sh bash/webpack.sh",
-    "imagemin": "glob \"src/images/**/*.{png,jpg,gif,svg}\" | node bash/imagemin -v -o dist",
+    "minify:js": "uglifyjs -c -o dist/gb/makeup/pico/bundle.js dist/gb/makeup/pico/bundle.js",
+    "minify:img": "glob \"src/images/**/*.{png,jpg,gif,svg}\" | node bash/imagemin -v -o dist/gb/makeup/pico",
     "server": "browser-sync start --config 'conf/bs-config.js'"
   },
   "dependencies": {
@@ -44,6 +45,7 @@
     "pug": "^2.0.0-rc.4",
     "pug-cli": "github:pugjs/pug-cli#master",
     "spritesmith-cli": "^1.1.2",
+    "uglify-js": "^3.3.7",
     "webpack": "^3.3.0"
   }
 }
