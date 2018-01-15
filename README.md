@@ -117,5 +117,6 @@ $ npm run server
 * Jan. 15, 2018
 	* Update imagemin
 	* Add spritesmith
+	* Add uglify-js
 * Sep. 15, 2017
 	* This package is Released.
