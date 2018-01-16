@@ -11,32 +11,39 @@
 npm Scriptsにより、静的サイト制作のための環境とビルドプロセスを構築。Node.js及びnpmがインストールされていれば1コマンドで開発環境を整えることができます。ページタイトルやメタなどの汎用的な情報はJSONで管理。開発者不在でも更新管理が可能となるようシンプルな構成としました。
 
 ### 機能
-* Pug ( HTML Template Engine )
+* Pug
 * Sass
 * Webpack
+* Sprite Image
+* Image Minify (png/jpg/gif/svg)
 * BrowserSync
 
 ### ディレクトリ構造
 ```
 root
-├ .postcssrc.json：Autoprefixerオプション設定
-├ bin：
+├ bash：
+	├ imagemin.js：画像圧縮処理
 	├ pug.sh：Pugコンパイル処理
-	└ server.js：BrowserSyncの起動とオプション設定
+	├ sass.sh：SASSコンパイル処理
+	└ webpack.sh：JavaScriptトランスパイル処理
+├ conf：
+	├ .postcssrc.json：Autoprefixerオプション設定
+	├ .spritesmith.js：Spritesmithオプション設定
+	├ bs-config.js：BrowserSyncの起動とオプション設定
+	└ webpack.config.js：Webpackオプション設定
 ├ data：
 	├ data.json：Pugコンパイル時に読み込むJSONファイル
 	├ env.json：Pugコンパイル用の環境変数保持
 	├ site.json：titleやmetaなど共通データの記載
 	└ site.min.json：Merge専用
 ├ dist：生成ファイル出力／ローカルサーバールートディレクトリ
-	└ images：画像ファイルの格納
-├ package.json
-├ README.md
 ├ src：開発ファイルの格納
-	├ scripts：.scss
-	├ styles：.js
+	├ images：.png/.jpg/.gif/.svg
+	├ scripts：.js
+	├ styles：.scss
 	└ templates：.pug
-└ webpack.config.js：Webpackオプション設定
+├ package.json
+└ README.md
 ```
 
 
@@ -102,8 +109,14 @@ $ npm run build:sass
 # EcmaScript6~ -> JavaScript
 $ npm run build:webpack -- (DEV／STG／PRD)
 
+# スプライト生成
+$ npm run build:sprite
+
+# JavaScript圧縮
+$ npm run minify:js
+
 # 画像圧縮
-$ npm run imagemin
+$ npm run minify:img
 
 # ローカルサーバー起動
 $ npm run server
@@ -114,7 +127,11 @@ $ npm run server
 
 
 ## 更新履歴
+* Jan. 16, 2018
+	* Update README.md
+	* Update templates
 * Jan. 15, 2018
+	* Udpate styles
 	* Update imagemin
 	* Add spritesmith
 	* Add uglify-js

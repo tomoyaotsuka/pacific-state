@@ -12,9 +12,12 @@ block var
   - CLASS = 'index'
 
 block content
+  
   section(class=`page-${CLASS}` id=`${CLASS}`)
+    
     //- 
-    //- Summary
+    //- Section
+    //- : Summary
     //- 
     section.summary
       h2 Summary
@@ -22,33 +25,41 @@ block content
         npm Scriptsにより、静的サイト制作のための環境とビルドプロセスを構築。Node.js及びnpmがインストールされていれば1コマンドで開発環境を整えることができます。ページタイトルやメタなどの汎用的な情報はJSONで管理。開発者不在でも更新管理が可能となるようシンプルな構成としました。
       h3 Feature
       ul
-        li Pug ( HTML Template Engine )
+        li Pug
         li Sass
         li Webpack
+        li Sprite Image
+        li Image Minify (png/jpg/gif/svg)
         li BrowserSync
       h3 Directory Structure
       pre
         code(class='code-multiline' root).
-          ├ .postcssrc.json：Autoprefixerオプション設定
-          ├ bin：
-            ├ pug.sh：Pugコンパイル処理
-            └ server.js：BrowserSyncの起動とオプション設定
+          ├ bash：
+          	├ imagemin.js：画像圧縮処理
+          	├ pug.sh：Pugコンパイル処理
+          	├ sass.sh：SASSコンパイル処理
+          	└ webpack.sh：JavaScriptトランスパイル処理
+          ├ conf：
+          	├ .postcssrc.json：Autoprefixerオプション設定
+          	├ .spritesmith.js：Spritesmithオプション設定
+          	├ bs-config.js：BrowserSyncの起動とオプション設定
+          	└ webpack.config.js：Webpackオプション設定
           ├ data：
-            ├ data.json：Pugコンパイル時に読み込むJSONファイル
-            ├ env.json：Pugコンパイル用の環境変数保持
-            ├ site.json：titleやmetaなど共通データの記載
-            └ site.min.json：Merge専用
+          	├ data.json：Pugコンパイル時に読み込むJSONファイル
+          	├ env.json：Pugコンパイル用の環境変数保持
+          	├ site.json：titleやmetaなど共通データの記載
+          	└ site.min.json：Merge専用
           ├ dist：生成ファイル出力／ローカルサーバールートディレクトリ
-            └ images：画像ファイルの格納
-          ├ package.json
-          ├ README.md
           ├ src：開発ファイルの格納
-            ├ scripts：.scss
-            ├ styles：.js
-            └ templates：.pug
-          └ webpack.config.js：Webpackオプション設定
+          	├ images：.png/.jpg/.gif/.svg
+          	├ scripts：.js
+          	├ styles：.scss
+          	└ templates：.pug
+          ├ package.json
+          └ README.md
     //- 
-    //- Env
+    //- Section
+    //- : Env
     //- 
     section.env
       h2 Environment
@@ -65,8 +76,10 @@ block content
       h3 Install npm
       pre
         code(class='code-multiline') $ npm i
+        
     //- 
-    //- Usage
+    //- Section
+    //- : Usage
     //- 
     section.usage
       h2 Usage
@@ -99,20 +112,40 @@ block content
           # EcmaScript6~ -> JavaScript
           $ npm run build:webpack -- (DEV／STG／PRD)
           
+          # スプライト生成
+          $ npm run build:sprite
+
+          # JavaScript圧縮
+          $ npm run minify:js
+
           # 画像圧縮
-          $ npm run imagemin
+          $ npm run minify:img
           
           # ローカルサーバー起動
           $ npm run server
+          
     //- 
-    //- Update
+    //- Section
+    //- : Update
     //- 
     section.update
       h2 Update
       ul
+        li Jan. 16, 2018
+          ul
+            li Update README.md
+            li Update templates
+        li Jan. 15, 2018
+          ul
+            li Udpate styles
+            li Update imagemin
+            li Add spritesmith
+            li Add uglify-js
         li Sep. 15, 2017
           ul
-            li This repository is released.
+            li This package is Released.
+            
   //- 
-  //- Page Index End
+  //- Page
+  //- : Index End
   //- 
