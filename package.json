@@ -23,12 +23,12 @@
     "jquery": "^3.2.1"
   },
   "devDependencies": {
-    "autoprefixer": "^7.1.5",
+    "autoprefixer": "^7.2.5",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
-    "browser-sync": "^2.18.13",
+    "browser-sync": "^2.23.5",
     "chokidar-cli": "^1.2.0",
     "cli-glob": "^0.1.0",
     "imagemin": "^5.3.1",
@@ -41,7 +41,7 @@
     "json-minify": "^1.0.0",
     "node-sass": "^4.5.3",
     "npm-run-all": "^4.1.1",
-    "postcss-cli": "^2.6.0",
+    "postcss-cli": "^4.1.1",
     "pug": "^2.0.0-rc.4",
     "pug-cli": "github:pugjs/pug-cli#master",
     "spritesmith-cli": "^1.1.2",
