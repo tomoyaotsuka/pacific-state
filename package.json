@@ -1,6 +1,6 @@
 {
   "name": "pacific-state",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "npm Scripts Starter",
   "author": "Tomoya Otsuka",
   "scripts": {
@@ -11,13 +11,13 @@
     "build:pug": "sh bash/pug.sh",
     "build:sass": "sh bash/sass.sh",
     "build:webpack": "sh bash/webpack.sh",
-    "build:sprite": "spritesmith --rc=./conf/.spritesmith.js",
+    "build:sprite": "spritesmith --rc=./conf/spritesmith.config.js",
     "watch:pug": "chokidar 'src/**/*.pug' --command 'npm run build:pug'",
     "watch:sass": "chokidar 'src/**/*.scss' --command 'npm run build:sass'",
     "watch:webpack": "sh bash/webpack.sh",
-    "minify:js": "uglifyjs -c -o dist/gb/makeup/pico/bundle.js dist/gb/makeup/pico/bundle.js",
-    "minify:img": "glob \"src/images/**/*.{png,jpg,gif,svg}\" | node bash/imagemin -v -o dist/gb/makeup/pico",
-    "server": "browser-sync start --config 'conf/bs-config.js'"
+    "minify:js": "uglifyjs -c -o dist/bundle.js dist/bundle.js",
+    "minify:img": "glob \"src/images/**/*.{png,jpg,gif,svg}\" | node bash/imagemin -v -o dist",
+    "server": "browser-sync start --config 'conf/bs.config.js'"
   },
   "dependencies": {
     "jquery": "^3.2.1"
