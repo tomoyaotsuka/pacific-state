@@ -1,6 +1,6 @@
 {
   "name": "pacific-state",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "npm Scripts Starter",
   "author": "Tomoya Otsuka",
   "scripts": {
@@ -40,6 +40,7 @@
     "json-merge": "^1.2.0",
     "json-minify": "^1.0.0",
     "node-sass": "^4.5.3",
+    "node-sass-globbing": "0.0.23",
     "npm-run-all": "^4.1.1",
     "postcss-cli": "^4.1.1",
     "pug": "^2.0.0-rc.4",
