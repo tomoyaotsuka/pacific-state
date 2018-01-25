@@ -15,9 +15,10 @@ html(lang='ja')
       script.
         hljs.initHighlightingOnLoad();
   body
-    div.body
+    div.app#app
       block header
         include ../_components/header
-      block content
+      div.contents#contents
+        block contents
       block footer
         include ../_components/footer
