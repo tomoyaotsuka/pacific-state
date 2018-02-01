@@ -5,10 +5,7 @@
 /*------------------------------------------------------------*/
 /* Common
 /*------------------------------------------------------------*/
-@import "./common/variables.scss";
-@import "./common/functions.scss";
-@import "./common/mixin.scss";
-@import "./common/normalize.scss";
+@import "./common/*";
 
 /*------------------------------------------------------------*/
 /* Foundation
@@ -20,8 +17,7 @@
 /*------------------------------------------------------------*/
 /* Components
 /*------------------------------------------------------------*/
-@import "./components/header.scss";
-@import "./components/footer.scss";
+@import "./components/*";
 
 /*------------------------------------------------------------*/
 /* Pages
@@ -32,6 +28,6 @@
 /* Mobile Upper
 /*------------------------------------------------------------*/
 @media screen and ( min-width: 769px ) {
-  @import "./mobile-upper/foundation.scss";
+  @import "./mobile-upper/*";
   .page-index { @import "./mobile-upper/pages/index.scss"; }
 }

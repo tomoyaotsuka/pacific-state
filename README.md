@@ -27,9 +27,9 @@ root
 	├ sass.sh：SASSコンパイル処理
 	└ webpack.sh：JavaScriptトランスパイル処理
 ├ conf：
-	├ .postcssrc.json：Autoprefixerオプション設定
-	├ .spritesmith.js：Spritesmithオプション設定
-	├ bs-config.js：BrowserSyncの起動とオプション設定
+	├ bs.config.js：BrowserSyncの起動とオプション設定
+	├ postcss.config.json：Autoprefixerオプション設定
+	├ spritesmith.config.js：Spritesmithオプション設定
 	└ webpack.config.js：Webpackオプション設定
 ├ data：
 	├ data.json：Pugコンパイル時に読み込むJSONファイル

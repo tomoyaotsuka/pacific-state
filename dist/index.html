@@ -27,7 +27,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
   </head>
   <body>
-    <div class="body">
+    <div class="app" id="app">
       <header class="header">
         <h1 class="title">Pacific State</h1>
         <h4 class="description">npm Scripts Starter</h4>
@@ -37,29 +37,30 @@
           <li>Role : Development, Art Direction</li>
         </ul>
       </header>
-      <section class="page-index" id="index">
-        <section class="summary">
-          <h2>Summary</h2>
-          <p>npm Scriptsにより、静的サイト制作のための環境とビルドプロセスを構築。Node.js及びnpmがインストールされていれば1コマンドで開発環境を整えることができます。ページタイトルやメタなどの汎用的な情報はJSONで管理。開発者不在でも更新管理が可能となるようシンプルな構成としました。</p>
-          <h3>Feature</h3>
-          <ul>
-            <li>Pug</li>
-            <li>Sass</li>
-            <li>Webpack</li>
-            <li>Sprite Image</li>
-            <li>Image Minify (png/jpg/gif/svg)</li>
-            <li>BrowserSync</li>
-          </ul>
-          <h3>Directory Structure</h3>
-          <pre><code class="code-multiline" root>├ bash：
+      <div class="contents" id="contents">
+        <section class="page-index" id="index">
+          <section class="summary">
+            <h2>Summary</h2>
+            <p>npm Scriptsにより、静的サイト制作のための環境とビルドプロセスを構築。Node.js及びnpmがインストールされていれば1コマンドで開発環境を整えることができます。ページタイトルやメタなどの汎用的な情報はJSONで管理。開発者不在でも更新管理が可能となるようシンプルな構成としました。</p>
+            <h3>Feature</h3>
+            <ul>
+              <li>Pug</li>
+              <li>Sass</li>
+              <li>Webpack</li>
+              <li>Sprite Image</li>
+              <li>Image Minify (png/jpg/gif/svg)</li>
+              <li>BrowserSync</li>
+            </ul>
+            <h3>Directory Structure</h3>
+            <pre><code class="code-multiline" root>├ bash：
 	├ imagemin.js：画像圧縮処理
 	├ pug.sh：Pugコンパイル処理
 	├ sass.sh：SASSコンパイル処理
 	└ webpack.sh：JavaScriptトランスパイル処理
 ├ conf：
-	├ .postcssrc.json：Autoprefixerオプション設定
-	├ .spritesmith.js：Spritesmithオプション設定
-	├ bs-config.js：BrowserSyncの起動とオプション設定
+  ├ bs.config.js：BrowserSyncの起動とオプション設定
+	├ postcss.config.json：Autoprefixerオプション設定
+	├ spritesmith.config.js：Spritesmithオプション設定
 	└ webpack.config.js：Webpackオプション設定
 ├ data：
 	├ data.json：Pugコンパイル時に読み込むJSONファイル
@@ -74,39 +75,39 @@
 	└ templates：.pug
 ├ package.json
 └ README.md</code></pre>
-        </section>
-        <section class="env">
-          <h2>Environment</h2>
-          <h3>OS / App ver.</h3>
-          <p>以下の環境で構築</p>
-          <ul>
-            <li>macOS Sierra@10.12.6</li>
-            <li>Node.js@8.6.0</li>
-            <li>npm@5.4.2</li>
-          </ul>
-          <h3>Install nodebrew, Node.js</h3>
-          <p>nodebrewをインストールの上、下記コマンドでNode.jsをインストールする。</p>
-          <pre><code class="code-multiline">$ nodebrew install-binary v8.6.0</code></pre>
-          <h3>Install npm</h3>
-          <pre><code class="code-multiline">$ npm i</code></pre>
-        </section>
-        <section class="usage">
-          <h2>Usage</h2>
-          <h3>Initialize</h3>
-          <p>HTML/CSS/JavaScriptコンパイルとファイル監視、ローカルサーバーの起動を開発時環境変数で行う。初回時などに使用。</p>
-          <pre><code class="code-multiline">$ npm start</code></pre>
-          <h3>Development</h3>
-          <p>HTML/CSS/JavaScriptファイルの監視とローカルサーバー起動を開発時環境変数で行う。</p>
-          <pre><code class="code-multiline">$ npm run dev</code></pre>
-          <h3>Staging / Production</h3>
-          <p>HTML/CSS/JavaScriptコンパイルをステージングあるいは本番時環境変数で行う。</p>
-          <pre><code class="code-multiline"># ステージング
+          </section>
+          <section class="env">
+            <h2>Environment</h2>
+            <h3>OS / App ver.</h3>
+            <p>以下の環境で構築</p>
+            <ul>
+              <li>macOS Sierra@10.12.6</li>
+              <li>Node.js@8.6.0</li>
+              <li>npm@5.4.2</li>
+            </ul>
+            <h3>Install nodebrew, Node.js</h3>
+            <p>nodebrewをインストールの上、下記コマンドでNode.jsをインストールする。</p>
+            <pre><code class="code-multiline">$ nodebrew install-binary v8.6.0</code></pre>
+            <h3>Install npm</h3>
+            <pre><code class="code-multiline">$ npm i</code></pre>
+          </section>
+          <section class="usage">
+            <h2>Usage</h2>
+            <h3>Initialize</h3>
+            <p>HTML/CSS/JavaScriptコンパイルとファイル監視、ローカルサーバーの起動を開発時環境変数で行う。初回時などに使用。</p>
+            <pre><code class="code-multiline">$ npm start</code></pre>
+            <h3>Development</h3>
+            <p>HTML/CSS/JavaScriptファイルの監視とローカルサーバー起動を開発時環境変数で行う。</p>
+            <pre><code class="code-multiline">$ npm run dev</code></pre>
+            <h3>Staging / Production</h3>
+            <p>HTML/CSS/JavaScriptコンパイルをステージングあるいは本番時環境変数で行う。</p>
+            <pre><code class="code-multiline"># ステージング
 $ npm run stg
 # 本番
 $ npm run prd</code></pre>
-          <h3>Others</h3>
-          <p>各タスクの実行コマンドは以下の通り。開発／本番環境の分岐はコマンド実行時の引数で行う。</p>
-          <pre><code class="code-multiline"># pug -> HTML
+            <h3>Others</h3>
+            <p>各タスクの実行コマンドは以下の通り。開発／本番環境の分岐はコマンド実行時の引数で行う。</p>
+            <pre><code class="code-multiline"># pug -> HTML
 $ npm run build:pug -- (DEV／STG／PRD)
 
 # sass -> CSS
@@ -127,32 +128,33 @@ $ npm run minify:img
 # ローカルサーバー起動
 $ npm run server
 </code></pre>
+          </section>
+          <section class="update">
+            <h2>Update</h2>
+            <ul>
+              <li>Jan. 16, 2018
+                <ul>
+                  <li>Update README.md</li>
+                  <li>Update templates</li>
+                </ul>
+              </li>
+              <li>Jan. 15, 2018
+                <ul>
+                  <li>Udpate styles</li>
+                  <li>Update imagemin</li>
+                  <li>Add spritesmith</li>
+                  <li>Add uglify-js</li>
+                </ul>
+              </li>
+              <li>Sep. 15, 2017
+                <ul>
+                  <li>This package is Released.</li>
+                </ul>
+              </li>
+            </ul>
+          </section>
         </section>
-        <section class="update">
-          <h2>Update</h2>
-          <ul>
-            <li>Jan. 16, 2018
-              <ul>
-                <li>Update README.md</li>
-                <li>Update templates</li>
-              </ul>
-            </li>
-            <li>Jan. 15, 2018
-              <ul>
-                <li>Udpate styles</li>
-                <li>Update imagemin</li>
-                <li>Add spritesmith</li>
-                <li>Add uglify-js</li>
-              </ul>
-            </li>
-            <li>Sep. 15, 2017
-              <ul>
-                <li>This package is Released.</li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-      </section>
+      </div>
       <footer class="footer">
         <p class="copyright"><small>© 2017 Tomoya Otsuka All Rights Reserved.</small></p>
       </footer>
