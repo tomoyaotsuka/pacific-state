@@ -5,9 +5,7 @@
 * Client : Private project
 * Role : Development
 
-
-![Pacific State](https://github.com/tomoyaotsuka/pacific-state/tree/master/dist/images/common/mainvisual-2.jpg)
-
+![Pacific State](https://raw.githubusercontent.com/tomoyaotsuka/pacific-state/master/dist/images/common/mainvisual-2.jpg)
 
 ## 概要
 npm Scriptsにより、静的サイト制作のための環境とビルドプロセスを構築。Node.js及びnpmがインストールされていれば1コマンドで開発環境を整えることができます。ページタイトルやメタなどの汎用的な情報はJSONで管理。開発者不在でも更新管理が可能となるようシンプルな構成としました。
