@@ -9,9 +9,9 @@ const util = require('util');
 
 module.exports = {
   src:           './src/images/_sprites/**/*.{png,gif,jpg}',
-  destImage:     './src/images/sprites.png',
-  destCSS:       './src/styles/sprites.json',
-  imgPath:       './images/sprites.png',
+  destImage:     './src/images/common/sprites.png',
+  destCSS:       './src/styles/common/sprites.scss', // .json
+  imgPath:       './images/common/sprites.png',
   algorithm:     'binary-tree',
   algorithmOpts: { sort: false },
   padding:       10,

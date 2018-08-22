@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 const path             = require('path');
 const readline         = require('readline');
 const Imagemin         = require('imagemin');
@@ -7,8 +6,6 @@ const imageminPngquant = require('imagemin-pngquant');
 const imageminJpegtran = require('imagemin-jpegtran');
 const imageminGifsicle = require('imagemin-gifsicle');
 const imageminSvgo     = require('imagemin-svgo');
-
-
 
 let outdir = process.env.PWD; // Default output folder.
 let verbose = false; // Default no logging.
@@ -44,18 +41,18 @@ if ( process.argv.indexOf('-v') !== -1 ) {
  * @param {Function} - The relevent `use` plugin (jpegtran|optipng|gifsicle).
  */
 
-function imagemin( srcpath, destpath, plugin ) {
+function imagemin(srcpath, destpath, plugin) {
   const im = new Imagemin()
     .src(srcpath)
     .dest(destpath)
     .use(plugin);
 
-  im.optimize(( err, file ) => {
-    if ( err ) {
+  im.optimize((err, file) => {
+    if (err) {
       console.error('Error: ' + err);
       process.exit(1);
     }
-    if ( file && verbose ) {
+    if (file && verbose) {
       console.log('\x1b[32m%s\x1b[0m', ticksymbol, destpath);
     }
   });
@@ -69,8 +66,8 @@ function imagemin( srcpath, destpath, plugin ) {
  * @return {{dest: String, type: String}} dest path and ext (.jpg|.png|.gif).
  */
 
-function getPathInfo( srcpath ) {
-  const ext     = path.extname( srcpath );
+function getPathInfo(srcpath) {
+  const ext     = path.extname(srcpath);
   const parts   = srcpath.split(path.sep);
   const subpath = parts.slice(parts.indexOf(DEST_SUBROOT_FOLDER), parts.length);
 
@@ -78,8 +75,8 @@ function getPathInfo( srcpath ) {
 
   let array = [];
 
-  for ( let i = 0; i < subpath.length - 1; i++ ) {
-    array.push( subpath[i] );
+  for (let i = 0; i < subpath.length - 1; i++) {
+    array.push(subpath[i]);
   }
 
   const dest = path.normalize(array.join(path.sep));
@@ -105,40 +102,55 @@ function getPathInfo( srcpath ) {
  * @param {String} srcpath - The filepath of the image to optimize.
  */
 
-function optimizeImage( srcpath ) {
-  const p   = getPathInfo( srcpath );
+function optimizeImage(srcpath) {
+  const p   = getPathInfo(srcpath);
   const ext = p.ext;
 
-  switch ( ext ) {
+  switch(ext) {
     case '.jpg':
-      // imagemin(srcpath, p.dest, Imagemin.jpegtran({ progressive: true }));
-      Imagemin( [srcpath], p.dest, {
-        plugins: [
-          imageminJpegtran({ progressive: true })
+      Imagemin([srcpath], p.dest, {
+        use: [
+          imageminJpegtran({
+            progressive: true
+          })
         ]
+      }).then(files => {
+        console.log(files[0].path);
       });
       break;
     case '.png':
-      // imagemin(srcpath, p.dest, Imagemin.optipng({ optimizationLevel: 5 }));
-      Imagemin( [srcpath], p.dest, {
-        plugins: [
-          imageminPngquant({ quality: '65-80' })
+      Imagemin([srcpath], p.dest, {
+        use: [
+          imageminPngquant({
+            quality: '80',
+            speed: 1
+          })
         ]
+      }).then(files => {
+        console.log(files[0].path);
       });
       break;
     case '.gif':
-      // imagemin(srcpath, p.dest, Imagemin.gifsicle({ interlaced: true }));
-      Imagemin( [srcpath], p.dest, {
-        plugins: [
-          imageminGifsicle({ interlaced: true })
+      Imagemin([srcpath], p.dest, {
+        use: [
+          imageminGifsicle({
+            interlaced: true,
+            optimizationLevel: 3
+          })
         ]
+      }).then(files => {
+        console.log(files[0].path);
       });
       break;
     case '.svg':
-      Imagemin( [srcpath], p.dest, {
+      Imagemin([srcpath], p.dest, {
         plugins: [
-          imageminSvgo({ removeViewBox: false })
+          imageminSvgo({
+            removeViewBox: false
+          })
         ]
+      }).then(files => {
+        console.log(files[0].path);
       });
       break;
     default :
@@ -148,5 +160,5 @@ function optimizeImage( srcpath ) {
 
 // Read each line from process.stdin (i.e. the filepath)
 rl.on('line', srcpath => {
-  optimizeImage( srcpath );
+  optimizeImage(srcpath);
 });

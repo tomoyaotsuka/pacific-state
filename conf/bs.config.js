@@ -13,10 +13,13 @@
  |
  */
 
-const server      = 'dist';
-const files       = 'dist';
-const startPath   = '';
-const reloadDelay = 500;
+const server    = 'dist';
+const files     = 'dist';
+const startPath = 'portfolio';
+
+const reloadDelay    = 0;
+const reloadDebounce = 1000;
+const reloadThrottle = 0;
 
 
 module.exports = {
@@ -67,8 +70,8 @@ module.exports = {
     "scrollElements": [],
     "scrollElementMapping": [],
     "reloadDelay": reloadDelay,
-    "reloadDebounce": 0,
-    "reloadThrottle": 0,
+    "reloadDebounce": reloadDebounce,
+    "reloadThrottle": reloadThrottle,
     "plugins": [],
     "injectChanges": true,
     "startPath": startPath,

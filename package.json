@@ -1,52 +1,84 @@
 {
   "name": "pacific-state",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "npm Scripts Starter",
   "author": "Tomoya Otsuka",
+  "config": {
+    "src": "src",
+    "dist": "dist"
+  },
   "scripts": {
-    "start": "npm-run-all -p 'build:* -- DEV' dev",
-    "dev": "npm-run-all -p 'watch:* -- DEV --watch' server",
-    "stg": "npm-run-all -s 'build:* -- STG' minify:*",
-    "prd": "npm-run-all -s 'build:* -- PRD' minify:*",
-    "build:pug": "sh bash/pug.sh",
-    "build:sass": "sh bash/sass.sh",
-    "build:webpack": "sh bash/webpack.sh",
-    "build:sprite": "spritesmith --rc=./conf/spritesmith.config.js",
-    "watch:pug": "chokidar 'src/**/*.pug' --command 'npm run build:pug'",
-    "watch:sass": "chokidar 'src/**/*.scss' --command 'npm run build:sass'",
-    "watch:webpack": "sh bash/webpack.sh",
-    "minify:js": "uglifyjs -c -o dist/bundle.js dist/bundle.js",
-    "minify:img": "glob \"src/images/**/*.{png,jpg,gif,svg}\" | node bash/imagemin -v -o dist",
-    "server": "browser-sync start --config 'conf/bs.config.js'"
+    "start": "npm-run-all -p 'watch -- production'",
+    "dev": "npm-run-all -p 'watch -- development'",
+    "build": "sh bash/build.sh $npm_package_config_src $npm_package_config_dist production",
+    "clean": "rimraf $npm_package_config_dist",
+    "copy": "sh bash/copy.sh $npm_package_config_dist",
+    "format": "eslint --fix --ext .js src/scripts/**/*",
+    "minify": "sh bash/minify.sh $npm_package_config_dist",
+    "server": "browser-sync start --config 'conf/bs.config.js'",
+    "watch": "sh bash/watch.sh $npm_package_config_src $npm_package_config_dist"
+  },
+  "babel": {
+    "plugins": [
+      "transform-runtime"
+    ],
+    "presets": [
+      [
+        "env",
+        {
+          "modules": false,
+          "targets": {
+            "browsers": [
+              ">0.25%",
+              "ie >= 11",
+              "iOS >= 10.0",
+              "Android >= 5.0"
+            ]
+          }
+        }
+      ]
+    ]
   },
   "dependencies": {
-    "jquery": "^3.2.1"
+    "animejs": "^2.2.0",
+    "autoprefixer": "^8.6.4",
+    "babel-runtime": "^6.26.0"
   },
   "devDependencies": {
-    "autoprefixer": "^7.2.5",
-    "babel-core": "^6.25.0",
-    "babel-loader": "^7.1.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "browser-sync": "^2.23.5",
+    "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.24.4",
     "chokidar-cli": "^1.2.0",
     "cli-glob": "^0.1.0",
+    "cpx": "^1.5.0",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
     "imagemin": "^5.3.1",
     "imagemin-cli": "^3.0.0",
     "imagemin-gifsicle": "^5.2.0",
     "imagemin-jpegtran": "^5.0.2",
-    "imagemin-pngquant": "^5.0.1",
+    "imagemin-pngquant": "^5.1.0",
     "imagemin-svgo": "^6.0.0",
     "json-merge": "^1.2.0",
     "json-minify": "^1.0.0",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.9.0",
     "node-sass-globbing": "0.0.23",
-    "npm-run-all": "^4.1.1",
-    "postcss-cli": "^4.1.1",
-    "pug": "^2.0.0-rc.4",
+    "npm-run-all": "^4.1.3",
+    "postcss-cli": "^5.0.0",
+    "postcss-loader": "^2.1.5",
+    "pug": "^2.0.3",
     "pug-cli": "github:pugjs/pug-cli#master",
+    "rimraf": "^2.6.2",
+    "sass-loader": "^7.0.3",
     "spritesmith-cli": "^1.1.2",
-    "uglify-js": "^3.3.7",
-    "webpack": "^3.3.0"
+    "style-loader": "^0.21.0",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.5"
   }
 }

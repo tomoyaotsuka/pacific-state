@@ -1,5 +1,5 @@
 #!/bin/sh
+# $1: 環境変数
 
-# $1 : 環境変数
-# $2 : 監視オプション
-NODE_ENV=${1:-DEV} webpack --progress --colors $2 --config conf/webpack.config.js
+# NODE_ENV=${1:-development} webpack --progress --colors --config conf/webpack.config.js
+webpack --mode ${1:-development} --progress --colors --config conf/webpack.config.js

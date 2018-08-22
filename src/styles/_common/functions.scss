@@ -1,0 +1,143 @@
+/*--------------------------------------------------------------------------------*/
+/* Functions */
+/*--------------------------------------------------------------------------------*/
+
+@function mround($number, $multiple) {
+  @return round($number / $multiple) * $multiple;
+}
+
+/*------------------------------------------------------------*/
+/* Aspect
+/*------------------------------------------------------------*/
+
+@function fourThirdsRatio($width, $direction) {
+  @if $direction == 'landscape' {
+    @return round-decimal($width * 3 / 4);
+  }
+  @if $direction == 'portrait' {
+    @return round-decimal($width * 4 / 3);
+  }
+}
+
+@function leicaRatio($width, $direction) {
+  @if $direction == 'landscape' {
+    @return round-decimal($width * 2 / 3);
+  }
+  @if $direction == 'portrait' {
+    @return round-decimal($width * 3 / 2);
+  }
+}
+
+@function silverRatio($width, $direction) {
+  @if $direction == 'landscape' {
+    @return round-decimal($width * 1 / 1.414);
+  }
+  @if $direction == 'portrait' {
+    @return round-decimal($width * 1.414 / 1);
+  }
+}
+
+@function goldenRatio($width, $direction) {
+  @if $direction == 'landscape' {
+    @return round-decimal($width * 1 / 1.618);
+  }
+  @if $direction == 'portrait' {
+    @return round-decimal($width * 1.618 / 1);
+  }
+}
+
+
+
+/*------------------------------------------------------------*/
+/* Scale
+/*------------------------------------------------------------*/
+
+@function vw($size, $base: 768) {
+  @return #{calc-scale($size, $base)}vw;
+}
+
+@function vh($size, $base: 768) {
+  @return #{calc-scale($size, $base)}vh;
+}
+
+@function vmax($size, $base: 768) {
+  @return #{calc-scale($size, $base)}vmax;
+}
+
+@function vmin($size, $base: 768) {
+  @return #{calc-scale($size, $base)}vmin;
+}
+
+/* Common
+/*--------------------*/
+@function calc-scale($size, $base) {
+  @return round-decimal($size / $base * 100);
+}
+
+
+
+/*------------------------------------------------------------*/
+/* Decimal
+/*------------------------------------------------------------*/
+
+@function round-decimal($number, $digits: 0) {
+  @return to-fixed($number, $digits, 'round');
+}
+
+@function ceil-decimal($number, $digits: 0) {
+  @return to-fixed($number, $digits, 'ceil');
+}
+
+@function floor-decimal($number, $digits: 0) {
+  @return to-fixed($number, $digits, 'floor');
+}
+
+/* Common
+/*--------------------*/
+@function to-fixed($number, $digits: 0, $round: 'round') {
+  $n: 1;
+  // $number must be a number
+  @if type-of($number) != number {
+    @warn '#{$number} is not a number.';
+    @return $number;
+  }
+  // $digits must be a unitless number
+  @if type-of($digits) != number {
+    @warn '#{$digits} is not a number.';
+    @return $number;
+  }
+  @else if not unitless($digits) {
+    @warn '#{$digits} has a unit.';
+    @return $number;
+  }
+
+  @for $i from 1 through $digits {
+    $n: $n * 10;
+  }
+
+  @if $round == 'round' {
+    @return round($number * $n) / $n;
+  }
+  @else if $round == 'ceil' {
+    @return ceil($number * $n) / $n;
+  }
+  @else if $round == 'floor' {
+    @return floor($number * $n) / $n;
+  }
+  @else {
+    @warn '#{$round} is undefined keyword.';
+    @return $number;
+  }
+}
+
+/*------------------------------------------------------------*/
+/* (Section Name)
+/*------------------------------------------------------------*/
+
+/*----------------------------------------*/
+/* (Module Name)
+/*----------------------------------------*/
+
+/* (Element Name)
+/*--------------------*/
+

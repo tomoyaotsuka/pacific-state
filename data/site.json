@@ -1,20 +1,20 @@
 {
   "SITENAME"      : "Pacific State",
-  "DESCRIPTION"   : "npm Scripts Starter",
   "KEYWORDS"      : "npm,Task Runner",
-  "CANONICAL"     : "",
+  "DESCRIPTION"   : "npm Scripts Starter",
   "URL"           : "",
   "AUTHOR"        : "Tomoya Otsuka",
 
-  "OG" : {
-    "DESCRIPTION" : "",
-    "IMAGE"       : "",
+  "OG": {
     "TYPE"        : "website",
     "LOCALE"      : "ja_JP",
+    "TITLE"       : "",
+    "DESCRIPTION" : "",
+    "IMAGE"       : "",
     "APP_ID"      : ""
   },
 
-  "TW" : {
+  "TW": {
     "CARD"        : "summary_large_image",
     "SITE"        : "@tomoya_otsuka"
   }

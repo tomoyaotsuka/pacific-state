@@ -1,0 +1,370 @@
+/*--------------------------------------------------------------------------------*/
+/* Mixin */
+/*--------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------*/
+/* Ornament
+/*------------------------------------------------------------*/
+
+/*----------------------------------------*/
+/* Ornament : Button
+/*----------------------------------------*/
+
+@mixin button($width, $height, $primary-color, $secondary-color, $style) {
+  position: relative;
+  width: $width;
+  height: $height;
+  text-align: center;
+
+  a {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+    line-height: $height;
+    transition: all .4s;
+  }
+
+  /* Fill
+  /*--------------------*/
+
+  @if $style == 'fill-fill' or $style == 'fill-stroke' {
+    a {
+      background: $primary-color;
+      color: $secondary-color;
+      &:hover {
+        color: $primary-color;
+        &::after {
+          border-color: $primary-color;
+        }
+      }
+    }
+  }
+  @if $style == 'fill-fill' {
+    a {
+      &:hover {
+        background: $secondary-color;
+      }
+    }
+  }
+  @if $style == 'fill-stroke' {
+    a {
+      border: 1px solid $primary-color;
+      box-sizing: border-box;
+      line-height: $height - 2;
+      &:hover {
+        background: none;
+      }
+    }
+  }
+
+  /* Stroke
+  /*--------------------*/
+
+  /* Reverse
+  /*--------------------*/
+
+  /* Fill Stroke
+  /*--------------------*/
+
+
+  //
+  // @if $style == 'reverse' {
+  //   a {
+  //     border: 1px solid $primary-color;
+  //     background: $secondary-color;
+  //     color: $primary-color;
+  //     &::after {
+  //       border-color: $primary-color;
+  //     }
+  //     &:hover {
+  //       border-color: $secondary-color;
+  //       background: $primary-color;
+  //       color: $secondary-color;
+  //       &::after {
+  //         border-color: $secondary-color;
+  //       }
+  //     }
+  //   }
+  // }
+  //
+  // @if $style == 'stroke' {
+  //   a {
+  //     border: 1px solid $primary-color;
+  //     color: $primary-color;
+  //     &::after {
+  //       border-color: $primary-color;
+  //     }
+  //     &:hover {
+  //       border-color: $secondary-color;
+  //       background-color: $primary-color;
+  //       color: $secondary-color;
+  //       &::after {
+  //         border-color: $secondary-color;
+  //       }
+  //     }
+  //   }
+  // }
+}
+
+/*----------------------------------------*/
+/* Ornament : Arrow
+/*----------------------------------------*/
+
+@mixin arrow($size, $stroke-width, $color, $direction) {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: $size;
+  height: $size;
+  margin-top: -$size/2;
+  border-top: $stroke-width solid $color;
+  border-right: $stroke-width solid $color;
+  transform-origin: center;
+
+  @if $direction == right {
+    transform: rotate(45deg);
+  }
+  @if $direction == bottom {
+    transform: rotate(135deg);
+  }
+  @if $direction == top {
+    transform: rotate(-45deg);
+  }
+  @if $direction == left {
+    transform: rotate(-135deg);
+  }
+}
+
+/*----------------------------------------*/
+/* Ornament : Pseudo Element
+/*----------------------------------------*/
+
+@mixin ornament($width, $height, $image: '') {
+  content: '';
+  display: block;
+  width: $width;
+  height: $height;
+  background-repeat: no-repeat;
+  background-size: contain;
+  @if $image != '' {
+    background-image: url($image);
+  }
+}
+
+/*----------------------------------------*/
+/* Ornament : Background Image
+/*----------------------------------------*/
+
+@mixin background-image($width, $height, $image: '') {
+  width: $width;
+  height: $height;
+  background-repeat: no-repeat;
+  background-size: contain;
+  @if $image != '' {
+    background-image: url($image);
+  }
+}
+
+
+
+/*------------------------------------------------------------*/
+/* Animation
+/*------------------------------------------------------------*/
+
+@mixin scurry($delay: 0s) {
+  animation: scurry 4s $delay infinite;
+}
+@keyframes scurry {
+  0% { transform: translateY(0); }
+  1% { transform: translateY(-6px); }
+  2% { transform: translateY(0); }
+  7% { transform: translateY(0); }
+  8% { transform: translateY(-6px); }
+  9% { transform: translateY(0); }
+}
+
+
+
+/*------------------------------------------------------------*/
+/* Media Query
+/*------------------------------------------------------------*/
+
+@mixin for-size($range) {
+	$mobile-upper-boundary:            768px;
+	$tablet-portrait-upper-boundary:   900px;
+	$tablet-landscape-upper-boundary: 1200px;
+	$desktop-upper-boundary:          1800px;
+
+	@if $range == mobile-only {
+		@media (max-width: $mobile-upper-boundary) {
+      @content;
+    }
+	}
+  @else if $range == tablet-portrait-up {
+    @media (min-width: #{$mobile-upper-boundary + 1}) {
+      @content;
+    }
+  }
+  @else if $range == tablet-landscape-up {
+    @media (min-width: $tablet-portrait-upper-boundary) {
+      @content;
+    }
+  }
+  @else if $range == desktop-up {
+    @media (min-width: $tablet-landscape-upper-boundary) {
+      @content;
+    }
+  }
+  @else if $range == big-desktop-up {
+    @media (min-width: $desktop-upper-boundary) {
+      @content;
+    }
+  }
+}
+
+
+
+/*------------------------------------------------------------*/
+/* Hack
+/*------------------------------------------------------------*/
+
+@mixin clearfix() {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+@mixin hidetext() {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+
+
+
+/*------------------------------------------------------------*/
+/* Typography
+/*------------------------------------------------------------*/
+
+@mixin bold() {
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+     -moz-font-smoothing: antialiased;
+          font-smoothing: antialiased;
+}
+
+// @mixin text-crop($line-height: 1.3, $top-adjustment: 0px, $bottom-adjustment: 0px) {
+@mixin text-crop($font-size: 1.0, $line-height: 24, $base-font-size: 0.625) {
+  // Configured in Step 1
+  // $top-crop: 9;
+  // $bottom-crop: 8;
+  // $crop-font-size: 36;
+  // $crop-line-height: 1.3;
+
+  // Apply values to calculate em-based margins that work with any font size
+  // $dynamic-top-crop: max(($top-crop + ($line-height - $crop-line-height) * ($crop-font-size / 2)), 0) / $crop-font-size;
+  // $dynamic-bottom-crop: max(($bottom-crop + ($line-height - $crop-line-height) * ($crop-font-size / 2)), 0) / $crop-font-size;
+  // $dynamic-top-crop:    $top-crop / $crop-font-size;
+  // $dynamic-bottom-crop: $bottom-crop / $crop-font-size;
+
+  // Mixin output
+  // line-height: $line-height;
+  // $font-size: 1.414;
+  // $line-height: 24;
+  $value: floor(($line-height - (16 * $base-font-size * $font-size)) / 2);
+
+  font-size: #{$font-size}rem;
+  line-height: #{$line-height}px;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: 0;
+    width: 0;
+  }
+
+  &::before {
+    // margin-bottom: calc(-#{$dynamic-top-crop}em + #{$top-adjustment});
+    margin-bottom: -#{$value}px;
+  }
+
+  // &::after {
+  //   // margin-top: calc(-#{$dynamic-bottom-crop}em + #{$bottom-adjustment});
+  //   margin-top: -#{$value}px;
+  // }
+}
+
+
+
+/*------------------------------------------------------------*/
+/* Sprite
+/*------------------------------------------------------------*/
+
+@mixin sprite-responsive($sprite) {
+  $sheet-w  : nth($sprite, 7);
+  $sheet-h  : nth($sprite, 8);
+  $sprite-w : nth($sprite, 5);
+  $sprite-h : nth($sprite, 6);
+  $offset-x : nth($sprite, 1);
+  $offset-y : nth($sprite, 2);
+  $bg-path  : nth($sprite, 9);
+
+  white-space: nowrap;
+  text-indent: 100%;
+  overflow: hidden;
+  font-size: 0;
+
+  background-image: url($bg-path);
+  background-size: floor($sheet-w / $sprite-w * 100 + 0%) floor($sheet-h / $sprite-h * 100 + 0%);
+  background-position-x: ($offset-x / ($sheet-w - $sprite-w) * 100 + 0%);
+  background-position-y: ($offset-y / ($sheet-h - $sprite-h) * 100 + 0%);
+
+  // &::after {
+  //   content: '';
+  //   display: block;
+  //   padding-top: ($sprite-h / $sprite-w * 100 + 0%);
+  // }
+}
+
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+
+
+/*------------------------------------------------------------*/
+/* (Section Name)
+/*------------------------------------------------------------*/
+
+/*----------------------------------------*/
+/* (Module Name)
+/*----------------------------------------*/
+
+/* (Element Name)
+/*--------------------*/
